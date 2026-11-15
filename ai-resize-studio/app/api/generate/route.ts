@@ -1,10 +1,8 @@
 import {env} from "cloudflare:workers";
-import {getChatGPTUser} from "@/app/chatgpt-auth";
 export const dynamic="force-dynamic";
 const sizes:Record<string,string>={"1080x1080":"1024x1024","1920x1080":"1536x864","1080x1920":"864x1536","1080x1350":"1024x1280","1379x611":"1808x800","1080x1440":"1056x1408"};
 const fail=(error:string,status:number)=>Response.json({error},{status,headers:{"Cache-Control":"no-store"}});
 export async function POST(request:Request){
- const user=await getChatGPTUser();if(!user&&!import.meta.env.DEV)return fail("로그인 후 다시 시도해 주세요.",401);
  const origin=request.headers.get("origin");if(origin&&origin!==new URL(request.url).origin)return fail("요청 출처를 확인할 수 없습니다.",403);
  const e=env as unknown as Record<string,string|undefined>;const key=e.OPENAI_API_KEY||process.env.OPENAI_API_KEY;if(!key)return fail("이미지 생성 연결이 아직 설정되지 않았습니다.",503);
  const length=Number(request.headers.get("content-length")||0);if(length>52*1024*1024)return fail("이미지가 너무 큽니다. 파일은 각각 25MB 이하로 올려주세요.",413);
