@@ -655,3 +655,39 @@ body{
 .sharp-option input:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .sharp-note{margin:5px 0 0;color:#f0e2f6;font-size:10px;line-height:1.5}
 .chat-panel .chat-suggestions button,.chat-panel .chat-compose textarea{font-family:'Noto Sans KR','Malgun Gothic',sans-serif}
+
+/* Result image preview. The download checkbox remains a separate control. */
+.card-image-button{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:zoom-in}
+.card-image-button:focus-visible{outline:3px solid #a56abd;outline-offset:-3px}
+.card-image-button:focus-visible .preview-overlay{opacity:1}
+.preview-overlay{pointer-events:none}
+.card-check{z-index:1}
+.image-dialog{width:min(960px,calc(100vw - 32px));height:min(860px,calc(100vh - 32px));max-width:none;max-height:none;margin:auto;padding:0;border:1px solid #e6d4ed;border-radius:22px;background:#fff;color:#302038;box-shadow:0 24px 80px #260b3a66;overflow:hidden}
+.image-dialog[open]{display:flex;flex-direction:column}
+.image-dialog::backdrop{background:#1f102bc9}
+.image-dialog,.image-dialog *{font-family:'Noto Sans KR','Malgun Gothic',sans-serif}
+.image-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 24px 14px}
+.image-dialog-header h2{margin:0;font-size:17px}
+.image-dialog-header p{margin:5px 0 0;color:#817287;font-size:12px}
+.image-dialog-close{display:grid;place-items:center;width:40px;height:40px;border:1px solid #e6d4ed;border-radius:12px;background:#fff;color:#49225b}
+.image-dialog-close:hover{background:#f5ebfa}
+.image-dialog-close:focus-visible,.image-dialog-edit:focus-visible{outline:3px solid #a56abd;outline-offset:2px}
+.image-dialog-view{flex:1;min-height:0;display:flex;justify-content:center;align-items:center;overflow:auto;background:#f3eff5;padding:12px}
+.image-dialog-view img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.image-dialog-view{overflow:hidden;touch-action:none;user-select:none;overscroll-behavior:contain}
+.image-dialog-view.zoomed{cursor:grab}
+.image-dialog-view.dragging{cursor:grabbing}
+.image-dialog-view:focus-visible{outline:3px solid #a56abd;outline-offset:-3px}
+.image-dialog-view img{flex:none;pointer-events:none;transform-origin:center center;will-change:transform}
+.image-zoom-toolbar{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 20px 0;color:#49225b;font-size:13px}
+.image-zoom-toolbar small{font-size:11px;color:#817287}
+.image-zoom-steps{display:flex;align-items:center;border:1px solid #e5dce9;background:#f7f5f8;border-radius:10px;overflow:hidden}
+.image-zoom-steps button{width:38px;height:36px;padding:0;border:0;background:transparent;color:#49225b;font-size:20px}
+.image-zoom-steps output{min-width:57px;text-align:center;font-size:13px}
+.image-zoom-steps button:hover:not(:disabled),.image-zoom-reset:hover:not(:disabled){background:#eee3f3}
+.image-zoom-reset{height:36px;padding:0 10px;border:1px solid #e5dce9;border-radius:9px;background:white;color:#49225b;font-size:12px}
+.image-zoom-steps button:focus-visible,.image-zoom-reset:focus-visible{outline:3px solid #a56abd;outline-offset:-3px}
+.image-dialog-actions{display:flex;justify-content:flex-end;padding:14px 24px 20px}
+.image-dialog-edit{border:0;border-radius:12px;padding:12px 20px;background:#592772;color:#fff;font-weight:700}
+.image-dialog-edit:hover{background:#713890}
+@media(max-width:600px){.image-dialog{width:calc(100vw - 20px);height:calc(100vh - 20px);border-radius:16px}.image-dialog-header{padding:16px 16px 12px}.image-dialog-actions{padding:12px 16px 16px}.image-dialog-edit{width:100%}.image-zoom-toolbar{gap:8px;padding:8px 10px 0;font-size:12px}.image-zoom-toolbar small{display:block;font-size:10px}.image-zoom-steps button{width:34px}.image-zoom-steps output{min-width:48px}}
